@@ -55,7 +55,7 @@ export default function TextureSidebar({
                             } rounded-xl`}
                         >
                             <div className="texture-preview w-12 relative aspect-square overflow-hidden transition-all border-border/70 flex justify-center items-center">
-                                <Ban className="size-10" />
+                                <Ban className="size-10  text-foreground/80" nonScalingStroke strokeWidth={2} />
                             </div>
                         </div>
                         <div className="mt-1 flex items-start justify-between gap-1.5">

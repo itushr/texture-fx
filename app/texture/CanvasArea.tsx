@@ -1,6 +1,6 @@
 "use client";
 
-import { FileImage, Trash, Plus, Minus, Scan, ArrowDownToLine, ImageIcon } from "lucide-react";
+import { FileImage, Trash, Plus, Minus, Scan, ArrowDownToLine, ImageIcon, SquareSplitHorizontal, Home } from "lucide-react";
 import { type ChangeEvent, type DragEvent, RefObject } from "react";
 
 type CanvasAreaProps = {
@@ -51,37 +51,38 @@ export default function CanvasArea({
             />
 
             {/* Floating Header */}
-            <div className="pointer-events-none absolute inset-x-0 top-0 z-20 flex items-center justify-between gap-3 p-4 sm:p-6">
-                <div className="pointer-events-auto flex items-center px-5 py-2 invisible gap-1.5 rounded-xl border border-border/70 bg-background/85 p-1 shadow-sm backdrop-blur-xl">
-                    Pixel FX
+            <div className="pointer-events-none absolute inset-x-0 top-5 left-5 z-20">
+                <div className="pointer-events-auto w-fit flex flex-col items-center gap-1 rounded-sm border border-border/70 bg-background/85 px-1 py-1.5 shadow-sm backdrop-blur-xl">
+                    <button
+                        className="rounded-lg px-2 py-2 text-xs transition-colors text-foreground hover:bg-muted hover:text-foreground">
+                        <Home className="size-6" nonScalingStroke strokeWidth={1} />
+                    </button>
+                    {imageUrl && (
+                        <>
+                            <button
+                                className="rounded-lg px-2 py-2 text-xs transition-colors text-foreground hover:bg-muted hover:text-foreground"
+                                title="compare with original"
+                                >
+                                <SquareSplitHorizontal className="size-6" nonScalingStroke strokeWidth={1} />
+                            </button>
+
+                            <button
+                                onClick={removeImage}
+                                className="flex items-center gap-1.5 rounded-lg px-2 py-2 text-xs text-foreground transition-colors hover:bg-muted hover:text-foreground"
+                                title="remove image"
+                            >
+                                <Trash className="size-6" nonScalingStroke strokeWidth={1} />
+                            </button>
+
+                            <button
+                                className="flex items-center gap-1.5 rounded-lg px-2 py-2 text-xs text-foreground transition-colors hover:bg-muted hover:text-foreground"
+                                title="download textured image"
+                            >
+                                <ArrowDownToLine className="size-6" nonScalingStroke strokeWidth={1} />
+                            </button>
+                        </>
+                    )}
                 </div>
-                {imageUrl && (
-                    <div className="pointer-events-auto flex items-center gap-1 rounded-sm border border-border/70 bg-background/85 p-1 shadow-sm backdrop-blur-xl">
-                        <button
-                            onClick={() => setShowOriginal((value) => !value)}
-                            className={`rounded-lg px-3 py-2 text-xs transition-colors ${showOriginal
-                                ? "bg-foreground text-background"
-                                : "text-muted-foreground hover:bg-muted hover:text-foreground"
-                                }`}
-                        >
-                            Compare
-                        </button>
-
-                        <button
-                            onClick={removeImage}
-                            className="flex items-center gap-1.5 rounded-lg px-2.5 py-2 text-xs text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-                        >
-                            <Trash className="size-4" />
-                        </button>
-
-                        <button
-                            className="flex items-center gap-1.5 rounded-lg px-2.5 py-2 text-xs text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-                            title="download textured image"
-                        >
-                            <ArrowDownToLine className="size-4.5" />
-                        </button>
-                    </div>
-                )}
             </div>
 
             {/* Canvas / upload */}
