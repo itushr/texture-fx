@@ -14,9 +14,7 @@ import {
     type ChangeEvent,
     type DragEvent,
 } from "react";
-
-import { ImageIcon } from "lucide-react";
-import { DottedBackground } from "@/components/dotted-background";
+import { ImagePlus } from "lucide-react";
 
 const getInitialTextureValues = (): Record<string, TextureValues> => {
     const initial: Record<string, TextureValues> = {};
@@ -49,7 +47,14 @@ export default function Page() {
     const [selectedTexture, setSelectedTexture] = useState<string | null>("grain");
     const [activePresets, setActivePresets] = useState<Record<string, string>>({
         grain: "Film",
+        dust: "Aged Film",
         paper: "Parchment",
+        halftone: "Newspaper",
+        vhs: "VCR Play",
+        marble: "Carrara",
+        chromatic: "Prism Fringe",
+        noise: "High ISO",
+        gradient: "Sunset Wash",
     });
 
     const [showOriginal, setShowOriginal] = useState(false);
@@ -237,7 +242,7 @@ export default function Page() {
 
     return (
         <main
-            className="texture-page relative min-h-screen overflow-hidden text-foreground"
+            className="texture-page relative min-h-screen overflow-hidden bg-background text-foreground"
             onDragEnter={(event) => {
                 event.preventDefault();
                 if (event.dataTransfer.types.includes("Files")) {
@@ -250,7 +255,6 @@ export default function Page() {
                 }
             }}
         >
-            <DottedBackground />
             <div className="min-h-screen flex">
                 <CanvasArea
                     canvasRef={canvasRef}
@@ -286,13 +290,16 @@ export default function Page() {
 
             {isDragging && (
                 <div className="pointer-events-none fixed inset-3 z-50 flex items-center justify-center rounded-2xl border-2 border-dashed border-primary bg-background/90 backdrop-blur-md">
-                    <div className="flex flex-col items-center text-center text-foreground/70">
-                        <div className="flex items-center justify-center">
-                            <ImageIcon className="size-40" strokeWidth={1.5} nonScalingStroke />
+                    <div className="flex flex-col items-center text-center">
+                        <div className="mb-4 flex size-16 items-center justify-center rounded-2xl border border-border bg-background shadow-sm">
+                            <ImagePlus className="size-7" strokeWidth={1.5} />
                         </div>
-                        <h2 className="text-lg font-light">
-                            Release to add Texture
+                        <h2 className="text-lg font-semibold tracking-tight">
+                            Drop to open
                         </h2>
+                        <p className="mt-2 text-sm text-muted-foreground">
+                            Your image will open in the canvas.
+                        </p>
                     </div>
                 </div>
             )}
