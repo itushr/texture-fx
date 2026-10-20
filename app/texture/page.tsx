@@ -16,6 +16,7 @@ import {
 } from "react";
 
 import { ImageIcon } from "lucide-react";
+import { DottedBackground } from "@/components/dotted-background";
 
 const getInitialTextureValues = (): Record<string, TextureValues> => {
     const initial: Record<string, TextureValues> = {};
@@ -236,7 +237,7 @@ export default function Page() {
 
     return (
         <main
-            className="texture-page relative min-h-screen overflow-hidden bg-background text-foreground"
+            className="texture-page relative min-h-screen overflow-hidden text-foreground"
             onDragEnter={(event) => {
                 event.preventDefault();
                 if (event.dataTransfer.types.includes("Files")) {
@@ -249,6 +250,7 @@ export default function Page() {
                 }
             }}
         >
+            <DottedBackground />
             <div className="min-h-screen flex">
                 <CanvasArea
                     canvasRef={canvasRef}

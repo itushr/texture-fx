@@ -98,7 +98,7 @@ export default function CanvasArea({
                     <>
                         <canvas
                             ref={canvasRef}
-                            className="block h-auto max-w-full rounded-sm shadow-[0_12px_60px_-18px_rgba(0,0,0,0.28)]"
+                            className="block h-auto max-w-full rounded-sm"
                             style={{
                                 maxHeight: "min(78vh, 1000px)",
                                 width: "100%",
