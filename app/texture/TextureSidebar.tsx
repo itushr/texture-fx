@@ -28,8 +28,6 @@ export default function TextureSidebar({
     selectedTexture,
     activePreset,
     values,
-    imageUrl,
-    isProcessing,
     chooseTexture,
     setSelectedTexture,
     applyPreset,
@@ -48,11 +46,10 @@ export default function TextureSidebar({
                         className="group min-w-0 text-left cursor-pointer w-fit flex flex-col items-center"
                     >
                         <div
-                            className={`p-1 border-3 border-border/70 ${
-                                selectedTexture === null
+                            className={`p-1 border-3 border-border/70 ${selectedTexture === null
                                     ? "border-primary"
                                     : "border-border/70"
-                            } rounded-xl`}
+                                } rounded-xl`}
                         >
                             <div className="texture-preview w-12 relative aspect-square overflow-hidden transition-all border-border/70 flex justify-center items-center">
                                 <Ban className="size-10  text-foreground/80" nonScalingStroke strokeWidth={2} />
@@ -71,11 +68,10 @@ export default function TextureSidebar({
                             className="group min-w-0 text-left cursor-pointer w-fit flex flex-col items-center"
                         >
                             <div
-                                className={`p-1 border-3 border-border/70 ${
-                                    texture.id === selectedTexture
+                                className={`p-1 border-3 border-border/70 ${texture.id === selectedTexture
                                         ? "border-primary"
                                         : "border-border/70"
-                                } rounded-xl`}
+                                    } rounded-xl`}
                             >
                                 <div
                                     className="texture-preview w-12 relative aspect-square overflow-hidden rounded-lg border transition-all border-border/70"
@@ -110,11 +106,10 @@ export default function TextureSidebar({
                                         <button
                                             key={preset.name}
                                             onClick={() => applyPreset(preset)}
-                                            className={`relative flex flex-col justify-between items-center overflow-hidden rounded-sm border p-3 text-left transition-colors cursor-pointer ${
-                                                activePreset === preset.name
+                                            className={`relative flex flex-col justify-between items-center overflow-hidden rounded-sm border p-3 text-left transition-colors cursor-pointer ${activePreset === preset.name
                                                     ? "border-foreground/50 bg-muted/70"
                                                     : "border-border bg-background hover:bg-muted/40"
-                                            }`}
+                                                }`}
                                         >
                                             <div
                                                 className="pointer-events-none absolute inset-0 opacity-20"
@@ -136,11 +131,10 @@ export default function TextureSidebar({
 
                         {/* Adjustment controls */}
                         <div
-                            className={`space-y-7 ${
-                                !currentTexture.presets || currentTexture.presets.length === 0
+                            className={`space-y-7 ${!currentTexture.presets || currentTexture.presets.length === 0
                                     ? "mt-8"
                                     : ""
-                            }`}
+                                }`}
                         >
                             {currentTexture.inputs?.map((input) => {
                                 if (input.type === "slider") {
@@ -183,7 +177,7 @@ export default function TextureSidebar({
                         </div>
                     </div>
 
-                    <div className="border-t border-border/60 px-5 mt-auto py-2">
+                    {/* <div className="border-t border-border/60 px-5 mt-auto py-2">
                         <button
                             onClick={downloadImage}
                             disabled={!imageUrl || isProcessing}
@@ -196,7 +190,7 @@ export default function TextureSidebar({
                         <p className="mt-3 text-center text-[10px] text-muted-foreground">
                             PNG · Original resolution · Lossless
                         </p>
-                    </div>
+                    </div> */}
                 </div>
             )}
         </aside>

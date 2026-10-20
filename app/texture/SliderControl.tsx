@@ -1,5 +1,7 @@
 "use client";
 
+import { Slider } from "@/components/ui/slider"
+
 type SliderControlProps = {
     label: string;
     value: number;
@@ -28,15 +30,14 @@ export default function SliderControl({
                     {unit}
                 </span>
             </div>
-            <input
-                type="range"
+            <Slider
+                value={value}
                 min={min}
                 max={max}
                 step={step}
-                value={value}
-                onChange={(e) => onChange(Number(e.target.value))}
-                className="w-full accent-primary cursor-pointer"
-            />
+                onValueChange={(val: number | readonly number[]) =>
+                    onChange(typeof val === "number" ? val : val[0])}
+                className="w-full cursor-pointer mt-4" />
         </div>
     );
 }

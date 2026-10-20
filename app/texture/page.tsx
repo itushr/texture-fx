@@ -174,14 +174,14 @@ export default function Page() {
 
         ctx.drawImage(image, 0, 0, width, height);
 
-        if (showOriginal || !selectedTexture) return;
+        if (!selectedTexture) return;
 
         const renderer = TEXTURE_RENDERERS[selectedTexture];
         if (!renderer) return;
 
         const values = textureValues[selectedTexture] || {};
         renderer(ctx, width, height, values, { seed: seedRef.current });
-    }, [showOriginal, selectedTexture, textureValues]);
+    }, [selectedTexture, textureValues]);
 
     useEffect(() => {
         if (!imageRef.current) return;
@@ -271,6 +271,7 @@ export default function Page() {
                     handleFileChange={handleFileChange}
                     handleDrop={handleDrop}
                     removeImage={removeImage}
+                    downloadImage={downloadImage}
                 />
 
                 <TextureSidebar
